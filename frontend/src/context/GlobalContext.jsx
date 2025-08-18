@@ -9,11 +9,23 @@ function GlobalProvider({ children }) {
 
     //COMPARAZIONE//
     function addToCompare(productId) {
+        const productToAdd = products.find(p => p.id === productId)
+        if (!productToAdd) return
         setCompareProductIds(prev => {
             if (prev.includes(productId)) return prev
-            if (prev.length < 2) return [...prev, productId]
-            alert("Puoi selezionare massimo 2 prodotti per la comparazione")
-            return prev
+            if (prev.length >= 2) {
+                alert("Puoi selezionare massimo 2 prodotti per la comparazione")
+                return prev
+            }
+
+            if (prev.length > 0) {
+                const firstProduct = products.find(p => p.id === prev[0])
+                if (firstProduct.category !== productToAdd.category) {
+                    alert("Seleziona prodotti dalla stessa categoria per la comparazione")
+                    return prev
+                }
+            }
+            return [...prev, productId]
         })
     }
 
