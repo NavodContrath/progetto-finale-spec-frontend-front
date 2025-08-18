@@ -15,8 +15,6 @@ export default function CompareProducts() {
     }, [compareProductIds, getProductById])
 
 
-
-
     if (compareProducts.length === 0) {
         return (
             <div className="container my-5">
@@ -38,6 +36,13 @@ export default function CompareProducts() {
                             className="card p-3 shadow-sm d-flex flex-column justify-content-between"
                             style={{ width: "48%" }}
                         >
+                            <img
+                                src={product.img || "GPT_Image_1_Asus_ROG_Zephyrus_0.png"}
+                                alt={product.title}
+                                style={{ width: "100%", maxHeight: "400px", objectFit: "cover" }}
+                                className="card-img-top"
+                            />
+
                             <div>
                                 <h2>{product.title}</h2>
                                 <p><strong>Categoria:</strong> {product.category}</p>
@@ -64,9 +69,12 @@ export default function CompareProducts() {
                             >
                                 Rimuovi dalla comparazione
                             </button>
+
                         </div>
                     )
+
                 })}
+
             </div>
 
             <Link to="/" className="btn btn-primary mt-4">Torna alla lista prodotti</Link>

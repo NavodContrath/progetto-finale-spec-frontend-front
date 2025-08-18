@@ -4,7 +4,7 @@ import { useGlobal } from "../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 
 export default function ProductList() {
-    const { products, compareProductIds, addToCompare, } = useGlobal()
+    const { products, addToCompare } = useGlobal()
     const navigate = useNavigate()
     const [search, setSearch] = useState("")
     const [debouncedSearch, setDebouncedSearch] = useState(search)
@@ -91,7 +91,7 @@ export default function ProductList() {
                 </div>
                 <div className="row g-4">
                     {filteredProducts.map((p) => (
-                        <div key={p.id} className="col-12 col-md-6 col-lg-4">
+                        <div key={p.id} className="col-6 col-md-4 col-lg-3">
                             <ProductCard
                                 p={p}
                                 selected={selectedIds.includes(p.id)}

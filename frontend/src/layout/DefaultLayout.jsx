@@ -10,9 +10,7 @@ export default function DefaultLayout() {
                     <NavLink className=" text-white text-decoration-none h6" to="/compare">Compara Prodotti</NavLink>
 
                 </div>
-
             </header>
-
             <main>
                 <Outlet />
             </main>

@@ -7,14 +7,14 @@ function ProductCard({ p, onToggle, selected }) {
             <img
                 className="card-img-top"
                 to={`/${p.id}`}
-                src="GPT_Image_1_Asus_ROG_Zephyrus_0.png"
-                style={{ height: "300px", objectFit: "cover" }}
+                src={p.img ? p.img : "GPT_Image_1_Asus_ROG_Zephyrus_0.png"}
+                style={{ maxHeight: "400px", width: "100%", objectFit: "cover" }}
                 alt="Image" />
             <div className="card-body d-flex justify-content-between align-items-center">
                 <div>
                     <Link
                         className="card-title"
-                        to={`/${p.id}`}
+                        to={`/product/${p.id}`}
                     >{p.title}</Link>
                     <p className="card-text text-muted">{p.category}</p>
                 </div>
@@ -25,10 +25,7 @@ function ProductCard({ p, onToggle, selected }) {
                     checked={selected}
                     onChange={onToggle} />
             </div>
-
-
         </div>
     )
 }
-
 export default React.memo(ProductCard)

@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route element={<DefaultLayout />}>
             <Route path='/' element={<ProductList />} />
-            <Route path='/:id' element={<ProductDetail />} />
+            <Route path='/product/:id' element={<ProductDetail />} />
             <Route path='/compare' element={<CompareProducts />} />
           </Route>
         </Routes>
