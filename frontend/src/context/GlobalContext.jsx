@@ -4,9 +4,9 @@ import useProducts from "../hooks/useProducts";
 const GlobalContext = createContext()
 
 function GlobalProvider({ children }) {
-    const { products } = useProducts()
+    const { products, getProductById } = useProducts()
     return (
-        <GlobalContext.Provider value={{ products }}>
+        <GlobalContext.Provider value={{ products, getProductById }}>
             {children}
         </GlobalContext.Provider>
     )

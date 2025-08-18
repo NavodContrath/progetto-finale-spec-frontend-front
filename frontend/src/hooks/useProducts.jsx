@@ -20,5 +20,16 @@ export default function useProducts() {
         getProducts()
     }, [])
 
-    return { products }
+
+    async function getProductById(id) {
+        const res = await fetch(`${URL}/products/${id}`)
+        if (!res.ok) throw new Error("Errore nel caricamento del prodotto")
+        const data = await res.json()
+        return data
+
+    }
+
+
+
+    return { products, getProductById }
 }
