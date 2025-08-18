@@ -7,6 +7,8 @@ export default function DefaultLayout() {
             <header className="nav-bar bg-primary shadow">
                 <div className="container d-flex justify-content-between align-items-center p-3">
                     <NavLink className="home-logo text-white text-decoration-none h1" to="/"><i className="bi bi-list-ul">Tecno logia</i></NavLink>
+                    <NavLink className=" text-white text-decoration-none h6" to="/compare">Compara Prodotti</NavLink>
+
                 </div>
 
             </header>

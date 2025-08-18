@@ -29,7 +29,8 @@ export default function useProducts() {
 
     }
 
-
-
-    return { products, getProductById }
+    return {
+        products,
+        getProductById,
+    }
 }

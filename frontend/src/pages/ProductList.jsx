@@ -1,13 +1,16 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { useGlobal } from "../context/GlobalContext";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductList() {
-    const { products } = useGlobal()
+    const { products, compareProductIds, addToCompare, } = useGlobal()
+    const navigate = useNavigate()
     const [search, setSearch] = useState("")
     const [debouncedSearch, setDebouncedSearch] = useState(search)
     const [categoryFilter, setCategoryFilter] = useState("Tutto")
     const [sortOrder, setSortOrder] = useState("A-z")
+    const [selectedIds, setSelectedIds] = useState([])
 
     const categories = useMemo(() => {
         const c = ["Tutto"]
@@ -46,6 +49,16 @@ export default function ProductList() {
 
     const toggleSortOrder = () => setSortOrder(prev => (prev === "A-z" ? "Z-a" : "A-z"))
 
+    const toggleSelection = useCallback((productId) => {
+        setSelectedIds(prev => prev.includes(productId) ? prev.filter(id => id !== productId) : [...prev, productId]
+        )
+    }, [])
+
+    const addHandler = () => {
+        selectedIds.forEach(id => addToCompare(id))
+        setSelectedIds([])
+        navigate("/compare")
+    }
 
     return (
         <>
@@ -71,11 +84,18 @@ export default function ProductList() {
                     <button className="btn btn-outline-primary" onClick={toggleSortOrder}>
                         Ordina {sortOrder === "A-z" ? "A → Z" : "Z → A"}
                     </button>
+                    <button className="btn btn-success" onClick={addHandler}>
+                        Aggiungi selezionati alla comparazione
+                    </button>
+
                 </div>
                 <div className="row g-4">
                     {filteredProducts.map((p) => (
                         <div key={p.id} className="col-12 col-md-6 col-lg-4">
-                            <ProductCard p={p} />
+                            <ProductCard
+                                p={p}
+                                selected={selectedIds.includes(p.id)}
+                                onToggle={() => toggleSelection(p.id)} />
                         </div>
                     ))}
                 </div>

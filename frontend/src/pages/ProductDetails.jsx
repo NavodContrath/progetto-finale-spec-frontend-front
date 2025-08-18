@@ -6,7 +6,6 @@ export default function ProductDetail() {
     const { id } = useParams()
     const { getProductById } = useGlobal()
     const [product, setProduct] = useState(null)
-    console.log(product)
 
     useEffect(() => {
         async function fetchProduct() {
