@@ -61,18 +61,20 @@ export default function ProductList() {
     }
 
     return (
-        <>
-            <div className="container my-5">
-                <input
-                    type="text"
-                    placeholder="Cerca prodotto..."
-                    className="form-control my-3"
-                    value={search}
-                    onChange={handleSearch}
-                />
-                <div className="d-flex gap-3 my-3">
+        <div className="container my-5">
+            <div className="row g-3 my-3">
+                <div className="col-md-8">
+                    <input
+                        type="text"
+                        placeholder="Cerca prodotto..."
+                        className="form-control search-input"
+                        value={search}
+                        onChange={handleSearch}
+                    />
+                </div>
+                <div className="col-md-4">
                     <select
-                        className="form-select"
+                        className="form-select category-select"
                         value={categoryFilter}
                         onChange={(e) => setCategoryFilter(e.target.value)}
                     >
@@ -80,36 +82,39 @@ export default function ProductList() {
                             <option key={c} value={c}>{c}</option>
                         ))}
                     </select>
-
-                    <button className="btn btn-outline-primary" onClick={toggleSortOrder}>
-                        Ordina {sortOrder === "A-z" ? "A → Z" : "Z → A"}
-                    </button>
-                    <button className="btn btn-success" onClick={addHandler}>
-                        Aggiungi selezionati alla comparazione
-                    </button>
-
-                </div>
-                <div className="row g-4">
-                    {filteredProducts.length > 0 ? filteredProducts.map((p) => (
-                        <div key={p.id} className="col-6 col-md-4 col-lg-3">
-                            <ProductCard
-                                p={p}
-                                selected={selectedIds.includes(p.id)}
-                                onToggle={() => toggleSelection(p.id)} />
-                        </div>
-                    )) :
-                        <div className="col-12">
-                            <div
-                                className="d-flex flex-column justify-content-center align-items-center p-5 border rounded bg-light"
-                                style={{ minHeight: "200px" }}
-                            >
-                                <h4>Nessun risultato trovato</h4>
-                                {search && <p>Non ci sono prodotti che corrispondono a "{search}"</p>}
-                            </div>
-                        </div>}
                 </div>
             </div>
-        </>
-    )
+            <div className="d-flex justify-content-between my-3 ">
+                <button className="btn btn-outline-light" onClick={toggleSortOrder}>
+                    Ordina {sortOrder === "A-z" ? "A → Z" : "Z → A"}
+                </button>
 
+                {selectedIds.length > 0 && (
+                    <button className="btn btn-accent" onClick={addHandler}>
+                        Aggiungi selezionati alla comparazione
+                    </button>
+                )}
+            </div>
+            <div className="row g-4">
+                {filteredProducts.length > 0 ? filteredProducts.map((p) => (
+                    <div key={p.id} className="col-6 col-md-4 col-lg-3">
+                        <ProductCard
+                            p={p}
+                            selected={selectedIds.includes(p.id)}
+                            onToggle={() => toggleSelection(p.id)}
+                        />
+                    </div>
+                )) : (
+                    <div className="col-12">
+                        <div
+                            className="d-flex flex-column justify-content-center align-items-center p-5 border rounded empty-box"
+                            style={{ minHeight: "200px" }}
+                        >
+                            <h4>Nessun risultato trovato</h4>
+                            {search && <p>Non ci sono prodotti che corrispondono a "{search}"</p>}
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>)
 }

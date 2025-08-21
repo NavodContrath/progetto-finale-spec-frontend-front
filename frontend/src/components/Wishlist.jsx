@@ -24,7 +24,7 @@ export default function Wishlist() {
 
             {open && (
                 <div
-                    className="wishlist-menu bg-white shadow rounded p-2 position-absolute end-0 mt-2"
+                    className="wishlist-menu bg-dark shadow rounded p-2 position-absolute end-0 mt-2"
                     style={{ minWidth: "400px", zIndex: 1050 }}
                 >
                     {wishlist.length === 0 ? (
@@ -32,9 +32,9 @@ export default function Wishlist() {
                     ) : (
                         <ul className="list-unstyled m-0 p-2">
                             {wishlist.map((p) => (
-                                <li key={p.id} className="mb-2 row border-bottom border-primary">
+                                <li key={p.id} className="mb-2 row border-bottom-accent">
                                     <Link
-                                        className="text-decoration-none col-8"
+                                        className="text-decoration-none text-accent col-8"
                                         to={`/product/${p.id}`}
                                         onClick={() => setOpen(false)
                                         }>
@@ -42,12 +42,12 @@ export default function Wishlist() {
                                     </Link>
                                     <div className="col-4 text-end">
                                         <i
-                                            className="bi bi-heartbreak text-black"
+                                            className="bi bi-heartbreak text-white"
                                             onClick={() => removeFromWishlist(p.id)}
                                             style={{ cursor: "pointer" }}
                                         ></i>
                                         <i
-                                            className="bi bi-clipboard2-plus ms-2 text-black"
+                                            className="bi bi-clipboard2-plus ms-2 text-white"
                                             onClick={() => addToCompare(p.id)}
                                             style={{ cursor: "pointer" }}></i>
                                     </div>

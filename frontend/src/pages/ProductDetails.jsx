@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { useGlobal } from "../context/GlobalContext";
 import { useEffect, useState } from "react";
 
@@ -24,8 +24,7 @@ export default function ProductDetail() {
     return (
         <div className="container w-50 my-5 d-flex justify-content-between border rounded p-3">
             <div>
-
-                <h1>{product.title}</h1>
+                <h1 className="text-accent">{product.title}</h1>
                 <p><strong>Categoria:</strong> {product.category}</p>
                 <p><strong>Brand:</strong> {product.brand}</p>
                 <p><strong>Prezzo:</strong> €{product.price}</p>
@@ -56,6 +55,9 @@ export default function ProductDetail() {
                         </ul>
                     </div>
                 )}
+                <div className="mt-4">
+                    <Link to="/" className="btn btn-accent">Torna alla lista prodotti</Link>
+                </div>
             </div>
             <div>
                 <img
