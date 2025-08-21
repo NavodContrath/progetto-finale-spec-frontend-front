@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import useProducts from "../hooks/useProducts";
 
 const GlobalContext = createContext()
@@ -6,7 +6,13 @@ const GlobalContext = createContext()
 function GlobalProvider({ children }) {
     const { products, getProductById } = useProducts()
     const [compareProductIds, setCompareProductIds] = useState([])
-    const [wishlist, setWishlist] = useState([])
+
+    const [wishlist, setWishlist] = useState(() => {
+        const saved = localStorage.getItem("wishlist")
+        return saved ? JSON.parse(saved) : []
+
+    })
+
 
     //COMPARAZIONE//
     function addToCompare(productId) {
@@ -33,6 +39,10 @@ function GlobalProvider({ children }) {
     }
 
     //WISHLIST//
+
+    useEffect(() => {
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    }, [wishlist])
 
     function toggleWishlist(product) {
         setWishlist(prev => prev.some(p => p.id === product.id) ? prev.filter(p => p.id !== product.id) : [...prev, product])
