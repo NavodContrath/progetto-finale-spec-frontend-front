@@ -8,6 +8,8 @@ body {
     box-sizing: border-box;
     background-color: #121212;
     color: #e0e0e0;
+    font-family: 'Roboto', sans-serif;
+
 }
 
 .empty-box {
@@ -31,12 +33,11 @@ body {
 }
 
 .nav-bar .home-logo i {
-    color: #ffffff;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
-.nav-bar .home-logo i:hover,
+.nav-bar i:hover,
 .nav-bar .text-white:hover {
     color: #ff6f61 !important;
 }
