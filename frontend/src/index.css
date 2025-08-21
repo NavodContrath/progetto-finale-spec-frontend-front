@@ -103,9 +103,10 @@ body {
 /*#region ProductCard */
 .product-card {
     background-color: #1e1e1e;
-    border: 1px solid #333;
+    border: 1px solid #ff6f61;
     border-radius: 10px;
     color: #e0e0e0;
+    overflow: hidden;
 }
 
 .product-title {

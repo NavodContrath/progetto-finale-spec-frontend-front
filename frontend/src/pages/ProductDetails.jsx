@@ -63,8 +63,8 @@ export default function ProductDetail() {
                 <img
                     src={`/${product.img}` || "GPT_Image_1_Asus_ROG_Zephyrus_0.png"}
                     alt={product.title}
-                    style={{ width: "100%", maxHeight: "400px", objectFit: "contain" }}
-                    className="card-img-top mb-3"
+                    style={{ width: "100%", maxHeight: "400px" }}
+                    className="mx-auto mb-3 rounded"
                 />
             </div>
         </div>
