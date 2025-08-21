@@ -27,20 +27,20 @@ export default function CompareProducts() {
     return (
         <div className="container my-5">
             <h1>Comparazione Prodotti</h1>
-            <div className="d-flex justify-content-between mt-4">
+            <div className="row mt-4">
                 {compareProducts.map(item => {
                     const product = item.product
                     return (
                         <div
                             key={product.id}
-                            className="card p-3 shadow-sm d-flex flex-column justify-content-between"
-                            style={{ width: "48%" }}
+                            className="card col-4 p-3 shadow-sm d-flex flex-column justify-content-between"
+
                         >
                             <img
                                 src={product.img || "GPT_Image_1_Asus_ROG_Zephyrus_0.png"}
                                 alt={product.title}
-                                style={{ width: "100%", maxHeight: "400px", objectFit: "cover" }}
-                                className="card-img-top"
+                                style={{ width: "100%", maxHeight: "400px", objectFit: "contain" }}
+                                className="card-img-top mb-3"
                             />
 
                             <div>
