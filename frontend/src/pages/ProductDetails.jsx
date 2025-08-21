@@ -22,38 +22,49 @@ export default function ProductDetail() {
 
     if (!product) return <p>Prodotto non trovato</p>
     return (
-        <div className="container my-5">
-            <h1>{product.title}</h1>
-            <p><strong>Categoria:</strong> {product.category}</p>
-            <p><strong>Brand:</strong> {product.brand}</p>
-            <p><strong>Prezzo:</strong> €{product.price}</p>
-            {product.releaseYear && (
-                <p><strong>Anno di uscita:</strong> {product.releaseYear}</p>
-            )}
+        <div className="container w-50 my-5 d-flex justify-content-between border rounded p-3">
+            <div>
 
-            {product.platform && (
-                <p><strong>Piattaforma:</strong> {product.platform}</p>
-            )}
-            {product.features?.length > 0 && (
-                <div>
-                    <strong>Features:</strong>
-                    <ul>
-                        {product.features.map((f, i) => (
-                            <li key={i}>{f}</li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-            {product.specs?.length > 0 && (
-                <div>
-                    <strong>Specifiche:</strong>
-                    <ul>
-                        {product.specs.map((s, i) => (
-                            <li key={i}>{s}</li>
-                        ))}
-                    </ul>
-                </div>
-            )}
+                <h1>{product.title}</h1>
+                <p><strong>Categoria:</strong> {product.category}</p>
+                <p><strong>Brand:</strong> {product.brand}</p>
+                <p><strong>Prezzo:</strong> €{product.price}</p>
+                {product.releaseYear && (
+                    <p><strong>Anno di uscita:</strong> {product.releaseYear}</p>
+                )}
+
+                {product.platform && (
+                    <p><strong>Piattaforma:</strong> {product.platform}</p>
+                )}
+                {product.features?.length > 0 && (
+                    <div className="d-flex">
+                        <strong>Features:</strong>
+                        <ul className="p-0 ms-1 list-unstyled d-flex" >
+                            {product.features.map((f, i) => (
+                                <li key={i} className=" ">{f}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+                {product.specs?.length > 0 && (
+                    <div>
+                        <strong>Specifiche:</strong>
+                        <ul>
+                            {product.specs.map((s, i) => (
+                                <li key={i}>{s}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+            </div>
+            <div>
+                <img
+                    src={`/${product.img}` || "GPT_Image_1_Asus_ROG_Zephyrus_0.png"}
+                    alt={product.title}
+                    style={{ width: "100%", maxHeight: "400px", objectFit: "contain" }}
+                    className="card-img-top mb-3"
+                />
+            </div>
         </div>
     )
 }

@@ -1,7 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "react-router-dom"
+import { useGlobal } from "../context/GlobalContext"
 
 function ProductCard({ p, onToggle, selected }) {
+    const { wishlist, toggleWishlist } = useGlobal()
+    const isListed = wishlist.some((item) => item.id === p.id)
+    const [isOver, setIsOver] = useState(false)
     return (
         <div className="card h-100 shadow-sm">
             <img
@@ -18,12 +22,23 @@ function ProductCard({ p, onToggle, selected }) {
                     >{p.title}</Link>
                     <p className="card-text text-muted">{p.category}</p>
                 </div>
-                <input
-                    type="checkbox"
-                    name="selcted"
-                    id={`selected${p.id}`}
-                    checked={selected}
-                    onChange={onToggle} />
+                <div className="d-flex align-items-center">
+                    <input
+                        type="checkbox"
+                        name="selcted"
+                        id={`selected${p.id}`}
+                        checked={selected}
+                        onChange={onToggle}
+                    />
+                    <button
+                        type="button"
+                        className="btn"
+                        onMouseOver={() => setIsOver(true)}
+                        onMouseLeave={() => setIsOver(false)}
+                        onClick={() => toggleWishlist(p)}>
+                        {isOver || isListed ? <i className="bi bi-heart-fill text-danger"></i> : <i className="bi bi-heart"></i>}
+                    </button>
+                </div>
             </div>
         </div>
     )

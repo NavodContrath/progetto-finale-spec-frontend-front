@@ -6,6 +6,7 @@ const GlobalContext = createContext()
 function GlobalProvider({ children }) {
     const { products, getProductById } = useProducts()
     const [compareProductIds, setCompareProductIds] = useState([])
+    const [wishlist, setWishlist] = useState([])
 
     //COMPARAZIONE//
     function addToCompare(productId) {
@@ -13,11 +14,6 @@ function GlobalProvider({ children }) {
         if (!productToAdd) return
         setCompareProductIds(prev => {
             if (prev.includes(productId)) return prev
-            if (prev.length >= 2) {
-                alert("Puoi selezionare massimo 2 prodotti per la comparazione")
-                return prev
-            }
-
             if (prev.length > 0) {
                 const firstProduct = products.find(p => p.id === prev[0])
                 if (firstProduct.category !== productToAdd.category) {
@@ -36,6 +32,16 @@ function GlobalProvider({ children }) {
         setCompareProductIds([])
     }
 
+    //WISHLIST//
+
+    function toggleWishlist(product) {
+        setWishlist(prev => prev.some(p => p.id === product.id) ? prev.filter(p => p.id !== product.id) : [...prev, product])
+    }
+    function removeFromWishlist(id) {
+        setWishlist(prev => prev.filter(p => p.id !== id))
+    }
+
+
     return (
         <GlobalContext.Provider value={{
             products,
@@ -43,7 +49,10 @@ function GlobalProvider({ children }) {
             compareProductIds,
             addToCompare,
             removeCompare,
-            clearCompare
+            clearCompare,
+            wishlist,
+            toggleWishlist,
+            removeFromWishlist
         }}>
             {children}
         </GlobalContext.Provider>
