@@ -43,9 +43,9 @@ export default function ProductList() {
         return () => clearTimeout(handler)
     }, [search])
 
-    const handleSearch = useCallback((e) => {
+    const handleSearch = (e) => {
         setSearch(e.target.value)
-    }, [])
+    }
 
     const toggleSortOrder = () => setSortOrder(prev => (prev === "A-z" ? "Z-a" : "A-z"))
 
@@ -90,14 +90,23 @@ export default function ProductList() {
 
                 </div>
                 <div className="row g-4">
-                    {filteredProducts.map((p) => (
+                    {filteredProducts.length > 0 ? filteredProducts.map((p) => (
                         <div key={p.id} className="col-6 col-md-4 col-lg-3">
                             <ProductCard
                                 p={p}
                                 selected={selectedIds.includes(p.id)}
                                 onToggle={() => toggleSelection(p.id)} />
                         </div>
-                    ))}
+                    )) :
+                        <div className="col-12">
+                            <div
+                                className="d-flex flex-column justify-content-center align-items-center p-5 border rounded bg-light"
+                                style={{ minHeight: "200px" }}
+                            >
+                                <h4>Nessun risultato trovato</h4>
+                                {search && <p>Non ci sono prodotti che corrispondono a "{search}"</p>}
+                            </div>
+                        </div>}
                 </div>
             </div>
         </>

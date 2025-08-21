@@ -1,32 +1,20 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState } from "react"
 import ReactDOM from "react-dom"
 import { useGlobal } from "../context/GlobalContext"
 import { Link } from "react-router-dom"
 
 export default function Wishlist() {
-    const { wishlist, removeFromWishlist } = useGlobal()
+    const { wishlist, removeFromWishlist, addToCompare } = useGlobal()
     const wishlistRoot = document.getElementById("wishlist-root")
     const [open, setOpen] = useState(false)
-    const ref = useRef()
-
-    useEffect(() => {
-        function handleClickOutside(event) {
-            if (ref.current && !ref.current.contains(event.target)) {
-                setOpen(false)
-            }
-        }
-        document.addEventListener("mousedown", handleClickOutside)
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside)
-        }
-    }, [])
 
     if (!wishlistRoot) return null
 
     return ReactDOM.createPortal(
-        <div className="wishlist-dropdown position-relative" ref={ref}>
+        <div className="wishlist-dropdown position-relative">
             <div
                 onClick={() => setOpen(!open)}
+                style={{ cursor: "pointer" }}
             >
                 {wishlist.length > 0 ? <i className="bi bi-heart-fill"></i> : <i className="bi bi-heart"></i>}
                 {wishlist.length > 0 && (
@@ -50,11 +38,18 @@ export default function Wishlist() {
                                         to={`/product/${p.id}`}
                                         onClick={() => setOpen(false)
                                         }>
-                                        {p.category.title}
+                                        {p.title}
                                     </Link>
                                     <div className="col-4 text-end">
-                                        <i className="bi bi-heartbreak text-black"></i>
-                                        <i className="bi bi-clipboard2-plus ms-2 text-black"></i>
+                                        <i
+                                            className="bi bi-heartbreak text-black"
+                                            onClick={() => removeFromWishlist(p.id)}
+                                            style={{ cursor: "pointer" }}
+                                        ></i>
+                                        <i
+                                            className="bi bi-clipboard2-plus ms-2 text-black"
+                                            onClick={() => addToCompare(p.id)}
+                                            style={{ cursor: "pointer" }}></i>
                                     </div>
                                 </li>
                             ))}
