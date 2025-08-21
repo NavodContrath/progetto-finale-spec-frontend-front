@@ -28,7 +28,7 @@ export default function Wishlist() {
                     style={{ minWidth: "400px", zIndex: 1050 }}
                 >
                     {wishlist.length === 0 ? (
-                        <p className="text-muted m-0">Nessun preferito</p>
+                        <p className=" text-light m-0">Nessun preferito</p>
                     ) : (
                         <ul className="list-unstyled m-0 p-2">
                             {wishlist.map((p) => (

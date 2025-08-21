@@ -3,7 +3,7 @@ import { useGlobal } from "../context/GlobalContext";
 import { Link } from "react-router-dom";
 
 export default function CompareProducts() {
-    const { compareProductIds, getProductById, removeCompare } = useGlobal();
+    const { compareProductIds, getProductById, removeCompare, toggleWishlist } = useGlobal();
     const [compareProducts, setCompareProducts] = useState([]);
 
     useEffect(() => {
@@ -54,7 +54,7 @@ export default function CompareProducts() {
                                     <h2 className="text-accent">{product.title}</h2>
                                     <p><strong>Categoria:</strong> {product.category}</p>
                                     <p><strong>Brand:</strong> {product.brand}</p>
-                                    <p><strong>Prezzo:</strong> €{product.price}</p>
+                                    {product.price === 0 ? <p><strong>Prezzo:</strong> gratuito</p> : <p><strong>Prezzo:</strong> €{product.price}</p>}
                                     {product.releaseYear && <p><strong>Anno di uscita:</strong> {product.releaseYear}</p>}
                                     {product.platform && <p><strong>Piattaforma:</strong> {product.platform}</p>}
                                     {product.features?.length > 0 && (
@@ -76,6 +76,12 @@ export default function CompareProducts() {
                                     onClick={() => removeCompare(product.id)}
                                 >
                                     Rimuovi dalla comparazione
+                                </button>
+                                <button
+                                    className="btn btn-success mt-2"
+                                    onClick={() => toggleWishlist(product)}
+                                >
+                                    Aggiungi ai preferiti
                                 </button>
                             </div>
                         </div>

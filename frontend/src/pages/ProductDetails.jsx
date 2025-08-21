@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function ProductDetail() {
     const { id } = useParams()
-    const { getProductById } = useGlobal()
+    const { getProductById, addToCompare, toggleWishlist } = useGlobal()
     const [product, setProduct] = useState(null)
 
     useEffect(() => {
@@ -27,7 +27,7 @@ export default function ProductDetail() {
                 <h1 className="text-accent">{product.title}</h1>
                 <p><strong>Categoria:</strong> {product.category}</p>
                 <p><strong>Brand:</strong> {product.brand}</p>
-                <p><strong>Prezzo:</strong> €{product.price}</p>
+                {product.price === 0 ? <p><strong>Prezzo:</strong> gratuito</p> : <p><strong>Prezzo:</strong> €{product.price}</p>}
                 {product.releaseYear && (
                     <p><strong>Anno di uscita:</strong> {product.releaseYear}</p>
                 )}
@@ -55,7 +55,17 @@ export default function ProductDetail() {
                         </ul>
                     </div>
                 )}
-                <div className="mt-4">
+                <div className="mt-4 d-flex gap-3">
+                    <button
+                        className="btn btn-success"
+                        onClick={() => toggleWishlist(product)}>
+                        <i className="bi bi-heart-fill"></i>
+                    </button>
+                    <button
+                        className="btn btn-success"
+                        onClick={() => addToCompare(product.id)}>
+                        <i class="bi bi-clipboard2-plus-fill"></i>
+                    </button>
                     <Link to="/" className="btn btn-accent">Torna alla lista prodotti</Link>
                 </div>
             </div>
