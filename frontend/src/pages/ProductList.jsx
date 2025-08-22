@@ -79,19 +79,18 @@ export default function ProductList() {
 
     return (
         <div className="container my-5">
-            <div className="row g-3 my-3">
-                <div className="d-flex justify-content-between mt-3 ">
+            <div className="row g-3 my-3 align-items-center">
+                <div className="col-12 d-flex flex-column flex-md-row justify-content-between mt-3 gap-2">
                     <button className="btn btn-outline-light" onClick={toggleSortOrder}>
                         Ordina {sortOrder === "A-z" ? "A → Z" : "Z → A"}
                     </button>
-
                     {selectedIds.length > 0 && (
                         <button className="btn btn-accent" onClick={addHandler}>
                             Aggiungi selezionati alla comparazione
                         </button>
                     )}
                 </div>
-                <div className="col-md-8">
+                <div className="col-12 col-md-8">
                     <input
                         type="text"
                         placeholder="Cerca prodotto..."
@@ -100,7 +99,7 @@ export default function ProductList() {
                         onChange={handleSearch}
                     />
                 </div>
-                <div className="col-md-4">
+                <div className="col-12 col-md-4">
                     <select
                         className="form-select category-select"
                         value={categoryFilter}
@@ -117,10 +116,11 @@ export default function ProductList() {
                 {loading ? (
                     <InfoBanner
                         error={"Sto Caricando"}
-                        info={"Prego attendere la fine del caricamento..."} />
+                        info={"Prego attendere la fine del caricamento..."}
+                    />
                 ) : paginatedProducts.length > 0 ? (
                     paginatedProducts.map((p) => (
-                        <div key={p.id} className="col-6 col-md-4 col-lg-3">
+                        <div key={p.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
                             <ProductCard
                                 p={p}
                                 selected={selectedIds.includes(p.id)}
@@ -132,12 +132,13 @@ export default function ProductList() {
                     <InfoBanner
                         error={"Nessun risultato trovato"}
                         info={"Non ci sono prodotti che corrispondono a"}
-                        search={search} />
+                        search={search}
+                    />
                 )}
             </div>
 
             {totalPages > 1 && (
-                <div className="d-flex justify-content-center mt-4 gap-2">
+                <div className="d-flex flex-column flex-md-row justify-content-center align-items-center mt-4 gap-2">
                     <button
                         className="btn btn-sm btn-outline-secondary"
                         onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
@@ -155,5 +156,7 @@ export default function ProductList() {
                     </button>
                 </div>
             )}
-        </div>)
+        </div>
+
+    )
 }

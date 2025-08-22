@@ -8,12 +8,13 @@ export default function DefaultLayout() {
 
     return (
         <>
-            <header
-                className="nav-bar shadow">
-                <div className="container d-flex justify-content-between align-items-center p-3">
-                    <NavLink className="home-logo text-white text-decoration-none h1" to="/">Tecno logia</NavLink>
-                    <div className="d-flex ">
-                        <NavLink className=" text-white text-decoration-none h6 me-3" to="/compare">
+            <header className="nav-bar shadow">
+                <div className="container d-flex flex-column flex-md-row justify-content-between align-items-center p-3 gap-2">
+                    <NavLink className="home-logo text-white text-decoration-none h1" to="/">
+                        Tecno logia
+                    </NavLink>
+                    <div className="d-flex align-items-center gap-3">
+                        <NavLink className="text-white text-decoration-none h6 position-relative" to="/compare">
                             {compareProductIds.length > 0 ? <i className="bi bi-clipboard2-fill"></i> : <i className="bi bi-clipboard2"></i>}
                             {compareProductIds.length > 0 && (
                                 <span className="badge bg-danger ms-1">{compareProductIds.length}</span>
@@ -21,7 +22,6 @@ export default function DefaultLayout() {
                         </NavLink>
                         <div id="wishlist-root" className="position-relative text-white text-decoration-none h6"></div>
                     </div>
-
                 </div>
             </header>
             <Wishlist />
@@ -35,6 +35,7 @@ export default function DefaultLayout() {
                     </span>
                 </div>
             </footer>
+
 
         </>
     )

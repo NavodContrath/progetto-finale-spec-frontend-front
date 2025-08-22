@@ -12,10 +12,7 @@ export default function Wishlist() {
 
     return ReactDOM.createPortal(
         <div className="wishlist-dropdown position-relative">
-            <div
-                onClick={() => setOpen(!open)}
-                style={{ cursor: "pointer" }}
-            >
+            <div onClick={() => setOpen(!open)} style={{ cursor: "pointer" }}>
                 {wishlist.length > 0 ? <i className="bi bi-heart-fill"></i> : <i className="bi bi-heart"></i>}
                 {wishlist.length > 0 && (
                     <span className="badge bg-danger ms-1">{wishlist.length}</span>
@@ -25,19 +22,20 @@ export default function Wishlist() {
             {open && (
                 <div
                     className="wishlist-menu bg-dark shadow rounded p-2 position-absolute end-0 mt-2"
-                    style={{ minWidth: "400px", zIndex: 1050 }}
+                    style={{ minWidth: "250px", maxWidth: "90vw", zIndex: 1050 }}
                 >
                     {wishlist.length === 0 ? (
-                        <p className=" text-light m-0">Nessun preferito</p>
+                        <p className="text-light m-0">Nessun preferito</p>
                     ) : (
                         <ul className="list-unstyled m-0 p-2">
                             {wishlist.map((p) => (
-                                <li key={p.id} className="mb-2 row border-bottom-accent">
+                                <li key={p.id} className="mb-2 row border-bottom-accent align-items-center">
                                     <Link
-                                        className="text-decoration-none text-accent col-8"
+                                        className="text-decoration-none text-accent col-8 text-truncate"
                                         to={`/product/${p.id}`}
-                                        onClick={() => setOpen(false)
-                                        }>
+                                        onClick={() => setOpen(false)}
+                                        title={p.title}
+                                    >
                                         {p.title}
                                     </Link>
                                     <div className="col-4 text-end">
@@ -49,7 +47,8 @@ export default function Wishlist() {
                                         <i
                                             className="bi bi-clipboard2-plus ms-2 text-white"
                                             onClick={() => addToCompare(p.id)}
-                                            style={{ cursor: "pointer" }}></i>
+                                            style={{ cursor: "pointer" }}
+                                        ></i>
                                     </div>
                                 </li>
                             ))}
@@ -57,7 +56,8 @@ export default function Wishlist() {
                     )}
                 </div>
             )}
-        </div>,
+        </div>
+        ,
         wishlistRoot
     )
 }
