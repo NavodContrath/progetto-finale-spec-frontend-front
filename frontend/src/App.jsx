@@ -4,6 +4,7 @@ import DefaultLayout from "./layout/DefaultLayout"
 import ProductList from "./pages/ProductList"
 import ProductDetail from "./pages/ProductDetails"
 import CompareProducts from "./pages/CompareProducts"
+import ScrollToTop from "./components/ScrollToTop"
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
   return (
     <GlobalProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route element={<DefaultLayout />}>
             <Route path='/' element={<ProductList />} />

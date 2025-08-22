@@ -2,28 +2,33 @@ import { useParams, Link } from "react-router-dom"
 import { useGlobal } from "../context/GlobalContext";
 import { useEffect, useState } from "react";
 import CorrelatedProducts from "../components/CorrelatedProducts";
+import InfoBanner from "../components/InfoBanner";
 
 export default function ProductDetail() {
     const { id } = useParams()
     const { getProductById, addToCompare, toggleWishlist, products } = useGlobal()
     const [product, setProduct] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         async function fetchProduct() {
+            setLoading(true)
             try {
                 const data = await getProductById(id)
                 setProduct(data.product)
             } catch (error) {
                 console.log(error.message)
                 setProduct(null)
+            } finally {
+                setLoading(false)
             }
         }
         fetchProduct()
     }, [id])
 
+    if (loading) return <InfoBanner error={"Sto Caricando"} info={"Prego attendere la fine del caricamento..."} />
 
-
-    if (!product) return <p>Prodotto non trovato</p>
+    if (!product) return <InfoBanner error={"404 notFound"} info={`Prodotto non trovato`} />
     return (
         <>
             <div className="container w-50 my-5 d-flex justify-content-between border rounded p-3">
@@ -80,7 +85,6 @@ export default function ProductDetail() {
                             </div>
                         </div>
                     )}
-
 
                     <div className="mt-4 d-flex gap-3">
                         <button

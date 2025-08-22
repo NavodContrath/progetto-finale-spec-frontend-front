@@ -57,15 +57,44 @@ export default function CompareProducts() {
                                     {product.releaseYear && <p><strong>Anno di uscita:</strong> {product.releaseYear}</p>}
                                     {product.platform && <p><strong>Piattaforma:</strong> {product.platform}</p>}
                                     {product.features?.length > 0 && (
-                                        <div>
-                                            <strong>Features:</strong>
-                                            <ul>{product.features.map((f, i) => <li key={i}>{f}</li>)}</ul>
+                                        <div className="d-flex align-items-center flex-wrap mb-2">
+                                            <strong className="me-2">Features:</strong>
+                                            <div className="d-flex flex-wrap gap-2">
+                                                {product.features.map((feature, i) => (
+                                                    <span
+                                                        key={i}
+                                                        className={`badge ${[
+                                                            "bg-primary",
+                                                            "bg-danger",
+                                                            "bg-warning text-dark",
+                                                            "bg-info text-dark"
+                                                        ][i % 4]}`}
+                                                    >
+                                                        {feature}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
                                     )}
+
                                     {product.specs?.length > 0 && (
-                                        <div>
-                                            <strong>Specifiche:</strong>
-                                            <ul>{product.specs.map((s, i) => <li key={i}>{s}</li>)}</ul>
+                                        <div className="d-flex align-items-center flex-wrap">
+                                            <strong className="me-2">Specifiche:</strong>
+                                            <div className="d-flex flex-wrap gap-2">
+                                                {product.specs.map((spec, i) => (
+                                                    <span
+                                                        key={i}
+                                                        className={`badge ${[
+                                                            "bg-warning text-dark",
+                                                            "bg-dark",
+                                                            "bg-info text-dark",
+                                                            "bg-danger",
+                                                        ][i % 4]}`}
+                                                    >
+                                                        {spec}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
                                     )}
                                 </div>

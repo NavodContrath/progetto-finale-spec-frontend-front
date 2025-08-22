@@ -3,9 +3,11 @@ import { Link } from "react-router-dom"
 import { useGlobal } from "../context/GlobalContext"
 
 function ProductCard({ p, onToggle, selected }) {
-    const { wishlist, toggleWishlist } = useGlobal()
-    const isListed = wishlist.some((item) => item.id === p.id)
-    const [isOver, setIsOver] = useState(false)
+    const { wishlist, toggleWishlist, compareProductsIds, addToCompare } = useGlobal()
+    const isListed = wishlist.some(item => item.id === p.id)
+    const isCompared = compareProductsIds?.some(id => id === p.id)
+    const [isOverWish, setIsOverWish] = useState(false)
+    const [isOverCompare, setIsOverCompare] = useState(false)
     const categoryColor = {
         Laptop: "text-success",
         Smartphone: "text-info",
@@ -28,25 +30,47 @@ function ProductCard({ p, onToggle, selected }) {
                     <p className={`card-text product-category ${categoryColor[p.category]}`}>{p.category}</p>
                 </div>
                 <div className="d-flex align-items-center">
+                    <button
+                        type="button"
+                        className="btn wishlist-btn"
+                        onMouseOver={() => setIsOverCompare(true)}
+                        onMouseLeave={() => setIsOverCompare(false)}
+                        onClick={() => addToCompare(p.id)}
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Aggiungi prodotto al comparatore">
+                        {isOverCompare || isCompared ? (
+                            <i class="bi bi-clipboard2-plus-fill"></i>
+                        ) : (
+                            <i class="bi bi-clipboard2-plus text-white"></i>
+                        )}
+                    </button>
+                    <button
+                        type="button"
+                        className="btn wishlist-btn"
+                        onMouseOver={() => setIsOverWish(true)}
+                        onMouseLeave={() => setIsOverWish(false)}
+                        onClick={() => toggleWishlist(p)}
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Aggiungi/rimuovi dalla wishlist">
+                        {isOverWish || isListed ? (
+                            <i className="bi bi-heart-fill"></i>
+                        ) : (
+                            <i className="bi bi-heart"></i>
+                        )}
+                    </button>
                     <input
                         type="checkbox"
                         name="selected"
                         id={`selected${p.id}`}
                         checked={selected}
                         onChange={onToggle}
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Selezione multipla per comparazione"
+                        style={{ cursor: "pointer" }}
                     />
-                    <button
-                        type="button"
-                        className="btn wishlist-btn"
-                        onMouseOver={() => setIsOver(true)}
-                        onMouseLeave={() => setIsOver(false)}
-                        onClick={() => toggleWishlist(p)}>
-                        {isOver || isListed ? (
-                            <i className="bi bi-heart-fill"></i>
-                        ) : (
-                            <i className="bi bi-heart"></i>
-                        )}
-                    </button>
                 </div>
             </div>
         </div>

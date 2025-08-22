@@ -2,15 +2,28 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { useGlobal } from "../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
+import InfoBanner from "../components/InfoBanner";
 
 export default function ProductList() {
     const { products, addToCompare } = useGlobal()
     const navigate = useNavigate()
     const [search, setSearch] = useState("")
+    const [loading, setLoading] = useState(true)
     const [debouncedSearch, setDebouncedSearch] = useState(search)
     const [categoryFilter, setCategoryFilter] = useState("Tutto")
     const [sortOrder, setSortOrder] = useState("A-z")
     const [selectedIds, setSelectedIds] = useState([])
+    const [currentPage, setCurrentPage] = useState(1)
+    const productsPerPage = 8
+
+    useEffect(() => {
+        setLoading(true)
+        const handler = setTimeout(() => {
+            setLoading(false)
+        }, 300)
+
+        return () => clearTimeout(handler)
+    }, [debouncedSearch, categoryFilter, products])
 
     const categories = useMemo(() => {
         const c = ["Tutto"]
@@ -60,6 +73,10 @@ export default function ProductList() {
         navigate("/compare")
     }
 
+    const startIndex = (currentPage - 1) * productsPerPage
+    const totalPages = Math.ceil(filteredProducts.length / productsPerPage)
+    const paginatedProducts = filteredProducts.slice(startIndex, startIndex + productsPerPage)
+
     return (
         <div className="container my-5">
             <div className="row g-3 my-3">
@@ -97,25 +114,46 @@ export default function ProductList() {
             </div>
 
             <div className="row g-4">
-                {filteredProducts.length > 0 ? filteredProducts.map((p) => (
-                    <div key={p.id} className="col-6 col-md-4 col-lg-3">
-                        <ProductCard
-                            p={p}
-                            selected={selectedIds.includes(p.id)}
-                            onToggle={() => toggleSelection(p.id)}
-                        />
-                    </div>
-                )) : (
-                    <div className="col-12">
-                        <div
-                            className="d-flex flex-column justify-content-center align-items-center p-5 border rounded empty-box"
-                            style={{ minHeight: "200px" }}
-                        >
-                            <h4>Nessun risultato trovato</h4>
-                            {search && <p>Non ci sono prodotti che corrispondono a "{search}"</p>}
+                {loading ? (
+                    <InfoBanner
+                        error={"Sto Caricando"}
+                        info={"Prego attendere la fine del caricamento..."} />
+                ) : paginatedProducts.length > 0 ? (
+                    paginatedProducts.map((p) => (
+                        <div key={p.id} className="col-6 col-md-4 col-lg-3">
+                            <ProductCard
+                                p={p}
+                                selected={selectedIds.includes(p.id)}
+                                onToggle={() => toggleSelection(p.id)}
+                            />
                         </div>
-                    </div>
+                    ))
+                ) : (
+                    <InfoBanner
+                        error={"Nessun risultato trovato"}
+                        info={"Non ci sono prodotti che corrispondono a"}
+                        search={search} />
                 )}
             </div>
+
+            {totalPages > 1 && (
+                <div className="d-flex justify-content-center mt-4 gap-2">
+                    <button
+                        className="btn btn-sm btn-outline-secondary"
+                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                        disabled={currentPage === 1}
+                    >
+                        ← Prev
+                    </button>
+                    <span>Pagina {currentPage} di {totalPages}</span>
+                    <button
+                        className="btn btn-sm btn-outline-secondary"
+                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                        disabled={currentPage === totalPages}
+                    >
+                        Next →
+                    </button>
+                </div>
+            )}
         </div>)
 }

@@ -5,16 +5,22 @@ const GlobalContext = createContext()
 
 function GlobalProvider({ children }) {
     const { products, getProductById } = useProducts()
-    const [compareProductIds, setCompareProductIds] = useState([])
-
+    const [compareProductIds, setCompareProductIds] = useState(() => {
+        const saved = localStorage.getItem("compareProducts")
+        return saved ? JSON.parse(saved) : []
+    })
     const [wishlist, setWishlist] = useState(() => {
         const saved = localStorage.getItem("wishlist")
         return saved ? JSON.parse(saved) : []
 
     })
 
-
     //COMPARAZIONE//
+
+    useEffect(() => {
+        localStorage.setItem("compareProducts", JSON.stringify(compareProductIds))
+    }, [compareProductIds])
+
     function addToCompare(productId) {
         const productToAdd = products.find(p => p.id === productId)
         if (!productToAdd) return
