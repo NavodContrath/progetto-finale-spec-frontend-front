@@ -28,7 +28,12 @@ export default function DefaultLayout() {
             <main>
                 <Outlet />
             </main>
-            <footer className="nav-bar bg-primary shadow">
+            <footer className="footer py-3 mt-5">
+                <div className="container text-center">
+                    <span className="text-white">
+                        &copy; {new Date().getFullYear()} <span className="text-accent">Tecno logia</span>. Tutti i diritti riservati.
+                    </span>
+                </div>
             </footer>
 
         </>

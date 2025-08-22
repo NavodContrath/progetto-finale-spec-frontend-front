@@ -63,6 +63,17 @@ export default function ProductList() {
     return (
         <div className="container my-5">
             <div className="row g-3 my-3">
+                <div className="d-flex justify-content-between mt-3 ">
+                    <button className="btn btn-outline-light" onClick={toggleSortOrder}>
+                        Ordina {sortOrder === "A-z" ? "A → Z" : "Z → A"}
+                    </button>
+
+                    {selectedIds.length > 0 && (
+                        <button className="btn btn-accent" onClick={addHandler}>
+                            Aggiungi selezionati alla comparazione
+                        </button>
+                    )}
+                </div>
                 <div className="col-md-8">
                     <input
                         type="text"
@@ -84,17 +95,7 @@ export default function ProductList() {
                     </select>
                 </div>
             </div>
-            <div className="d-flex justify-content-between my-3 ">
-                <button className="btn btn-outline-light" onClick={toggleSortOrder}>
-                    Ordina {sortOrder === "A-z" ? "A → Z" : "Z → A"}
-                </button>
 
-                {selectedIds.length > 0 && (
-                    <button className="btn btn-accent" onClick={addHandler}>
-                        Aggiungi selezionati alla comparazione
-                    </button>
-                )}
-            </div>
             <div className="row g-4">
                 {filteredProducts.length > 0 ? filteredProducts.map((p) => (
                     <div key={p.id} className="col-6 col-md-4 col-lg-3">

@@ -12,6 +12,10 @@ body {
 
 }
 
+main {
+    min-height: calc(100vh - 160px);
+}
+
 .empty-box {
     background-color: #1e1e1e;
     border: 1px dashed #444;
@@ -27,9 +31,9 @@ body {
 /*#region Navbar */
 .nav-bar {
     background-color: #1e1e1e;
-    margin: 0.5rem;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    height: 80px;
 }
 
 .nav-bar .home-logo i {
@@ -157,6 +161,30 @@ body {
 
 .border-bottom-accent {
     border-bottom: 1px solid #ff6f61;
+}
+
+/*#endregion*/
+
+/*#region Footer*/
+.footer {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    border-top: 1px solid #333;
+    height: 80px;
+}
+
+.footer .text-accent {
+    color: #ff6f61;
+    font-weight: 600;
+}
+
+.footer a {
+    color: #e0e0e0;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #ff6f61;
 }
 
 /*#endregion*/
