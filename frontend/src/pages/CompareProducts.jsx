@@ -1,19 +1,36 @@
 import { useEffect, useState } from "react";
 import { useGlobal } from "../context/GlobalContext";
 import { Link } from "react-router-dom";
+import InfoBanner from "../components/InfoBanner";
 
 export default function CompareProducts() {
     const { compareProductIds, getProductById, removeCompare, toggleWishlist } = useGlobal()
     const [compareProducts, setCompareProducts] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         async function fetchToCompare() {
-            const data = await Promise.all(compareProductIds.map(id => getProductById(id)))
-            setCompareProducts(data)
+            setLoading(true)
+            try {
+                const data = await Promise.all(compareProductIds.map(id => getProductById(id)))
+                setCompareProducts(data)
+            } catch (err) {
+                console.error(err)
+                setCompareProducts([])
+            } finally {
+                setLoading(false);
+            }
         }
-        fetchToCompare();
+
+        if (compareProductIds.length > 0) {
+            fetchToCompare()
+        } else {
+            setCompareProducts([])
+            setLoading(false)
+        }
     }, [compareProductIds, getProductById])
-    if (compareProducts.length === 0) {
+
+    if (!loading && compareProducts.length === 0) {
         return (
             <div className="container my-5">
                 <div
@@ -26,6 +43,7 @@ export default function CompareProducts() {
             </div>
         );
     }
+    if (loading) return <InfoBanner error={"Sto Caricando"} info={"Prego attendere la fine del caricamento..."} />
 
     return (
         <div className="container my-5 text-light">

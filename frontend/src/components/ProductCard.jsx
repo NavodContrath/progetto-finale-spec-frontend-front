@@ -40,9 +40,9 @@ function ProductCard({ p, onToggle, selected }) {
                         data-bs-placement="top"
                         title="Aggiungi prodotto al comparatore">
                         {isOverCompare || isCompared ? (
-                            <i class="bi bi-clipboard2-plus-fill"></i>
+                            <i className="bi bi-clipboard2-plus-fill"></i>
                         ) : (
-                            <i class="bi bi-clipboard2-plus text-white"></i>
+                            <i className="bi bi-clipboard2-plus text-white"></i>
                         )}
                     </button>
                     <button

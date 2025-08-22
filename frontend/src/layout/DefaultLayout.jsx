@@ -14,7 +14,7 @@ export default function DefaultLayout() {
                     <NavLink className="home-logo text-white text-decoration-none h1" to="/">Tecno logia</NavLink>
                     <div className="d-flex ">
                         <NavLink className=" text-white text-decoration-none h6 me-3" to="/compare">
-                            {compareProductIds.length > 0 ? <i class="bi bi-clipboard2-fill"></i> : <i class="bi bi-clipboard2"></i>}
+                            {compareProductIds.length > 0 ? <i className="bi bi-clipboard2-fill"></i> : <i className="bi bi-clipboard2"></i>}
                             {compareProductIds.length > 0 && (
                                 <span className="badge bg-danger ms-1">{compareProductIds.length}</span>
                             )}

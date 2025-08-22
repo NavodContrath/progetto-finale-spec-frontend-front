@@ -1,5 +1,6 @@
-import { useMemo } from "react"
+import { useMemo, useState, useEffect } from "react"
 import ProductCard from "./ProductCard"
+import InfoBanner from "./InfoBanner"
 
 export default function CorrelatedProducts({ product, products }) {
     const [loading, setLoading] = useState(true)
