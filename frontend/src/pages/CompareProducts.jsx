@@ -3,17 +3,16 @@ import { useGlobal } from "../context/GlobalContext";
 import { Link } from "react-router-dom";
 
 export default function CompareProducts() {
-    const { compareProductIds, getProductById, removeCompare, toggleWishlist } = useGlobal();
-    const [compareProducts, setCompareProducts] = useState([]);
+    const { compareProductIds, getProductById, removeCompare, toggleWishlist } = useGlobal()
+    const [compareProducts, setCompareProducts] = useState([])
 
     useEffect(() => {
         async function fetchToCompare() {
-            const data = await Promise.all(compareProductIds.map(id => getProductById(id)));
-            setCompareProducts(data);
+            const data = await Promise.all(compareProductIds.map(id => getProductById(id)))
+            setCompareProducts(data)
         }
         fetchToCompare();
-    }, [compareProductIds, getProductById]);
-
+    }, [compareProductIds, getProductById])
     if (compareProducts.length === 0) {
         return (
             <div className="container my-5">
