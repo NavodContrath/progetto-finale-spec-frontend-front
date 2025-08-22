@@ -9,11 +9,14 @@ export default function DefaultLayout() {
     return (
         <>
             <header className="nav-bar shadow">
-                <div className="container d-flex flex-column flex-md-row justify-content-between align-items-center p-3 gap-2">
+                <div className="container w-75 d-flex flex-column flex-md-row justify-content-between align-items-center p-3 gap-2">
                     <NavLink className="home-logo text-white text-decoration-none h1" to="/">
-                        Tecno logia
+                        TeKno Logia
                     </NavLink>
                     <div className="d-flex align-items-center gap-3">
+                        <NavLink to="/?category=Laptop" className="text-white text-decoration-none h6">Laptop</NavLink>
+                        <NavLink to="/?category=Smartphone" className="text-white text-decoration-none h6">Smartphone</NavLink>
+                        <NavLink to="/?category=Game" className="text-white text-decoration-none h6">Giochi</NavLink>
                         <NavLink className="text-white text-decoration-none h6 position-relative" to="/compare">
                             {compareProductIds.length > 0 ? <i className="bi bi-clipboard2-fill"></i> : <i className="bi bi-clipboard2"></i>}
                             {compareProductIds.length > 0 && (

@@ -1,20 +1,28 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { useGlobal } from "../context/GlobalContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import InfoBanner from "../components/InfoBanner";
 
 export default function ProductList() {
     const { products, addToCompare } = useGlobal()
     const navigate = useNavigate()
+    const location = useLocation()
     const [search, setSearch] = useState("")
     const [loading, setLoading] = useState(true)
     const [debouncedSearch, setDebouncedSearch] = useState(search)
-    const [categoryFilter, setCategoryFilter] = useState("Tutto")
+    const queryParams = new URLSearchParams(location.search)
+    const intialCategory = queryParams.get("category") || "Tutto"
+    const [categoryFilter, setCategoryFilter] = useState(intialCategory)
     const [sortOrder, setSortOrder] = useState("A-z")
     const [selectedIds, setSelectedIds] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const productsPerPage = 8
+
+    useEffect(() => {
+        const categoryFromUrl = new URLSearchParams(location.search).get("category") || "Tutto"
+        setCategoryFilter(categoryFromUrl)
+    }, [location.search])
 
     useEffect(() => {
         setLoading(true)
