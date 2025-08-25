@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useGlobal } from "../context/GlobalContext"
 import InfoBanner from "../components/InfoBanner"
 import { Link } from "react-router-dom"
+import CategoriesSection from "../components/CategoriesSection"
 
 function getRandomProductByCategory(products, category) {
     const filtered = products.filter(p => p.category === category)
@@ -11,10 +12,9 @@ function getRandomProductByCategory(products, category) {
 }
 
 export default function Homepage() {
-    const { products } = useGlobal()
+    const { products, getProductById } = useGlobal()
     const [product, setProduct] = useState([])
     const [loading, setLoading] = useState(false)
-    const { getProductById } = useGlobal()
     const categories = ["Laptop", "Smartphone", "Game"]
 
     useEffect(() => {
@@ -58,29 +58,7 @@ export default function Homepage() {
                 </div>
                 <div className="mt-3">
                     <h3 className="text-center">Scegli tra le nostre categorie di prodotti:</h3>
-                    <div className="d-flex justify-content-center  gap-3">
-                        {categories.map(category => {
-                            const p = product[category];
-                            if (!p) return null;
-                            return (
-                                <div key={p.id} className="card h-100 p-2 shadow-sm bg-dark">
-                                    <img
-                                        src={`/${p.img}`}
-                                        className="img-fluid"
-                                        style={{ maxHeight: "400px", width: "100%", objectFit: "contain" }}
-                                        alt={p.title}
-                                    />
-                                    <Link
-                                        className={`btn btn-lg rounded-0 mb-2 ${category === "Laptop" ? "btn-success" : category === "Smartphone" ? "btn-info text-white" : "btn-warning text-white"}`}
-                                        to={`/product-list/?category=${category}`}
-                                    >
-                                        {category}
-                                    </Link>
-                                </div>
-
-                            );
-                        })}
-                    </div>
+                    <CategoriesSection productsByCategory={product} categories={categories} />
 
                 </div>
                 <div className="mt-4">
