@@ -7,7 +7,7 @@ function GlobalProvider({ children }) {
     const { products, getProductById } = useProducts()
     const [compareProductIds, setCompareProductIds] = useState(() => {
         const saved = localStorage.getItem("compareProducts")
-        return saved ? JSON.parse(saved) : []
+        return saved ? JSON.parse(saved).map(Number) : []
     })
     const [wishlist, setWishlist] = useState(() => {
         const saved = localStorage.getItem("wishlist")
@@ -22,10 +22,11 @@ function GlobalProvider({ children }) {
     }, [compareProductIds])
 
     function addToCompare(productId) {
-        const productToAdd = products.find(p => p.id === productId)
+        const id = Number(productId)
+        const productToAdd = products.find(p => p.id === id)
         if (!productToAdd) return
         setCompareProductIds(prev => {
-            if (prev.includes(productId)) return prev
+            if (prev.includes(id)) return prev.filter(pid => pid !== id)
             if (prev.length > 0) {
                 const firstProduct = products.find(p => p.id === prev[0])
                 if (firstProduct.category !== productToAdd.category) {
@@ -33,7 +34,7 @@ function GlobalProvider({ children }) {
                     return prev
                 }
             }
-            return [...prev, productId]
+            return [...prev, id]
         })
     }
 

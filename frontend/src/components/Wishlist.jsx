@@ -31,7 +31,7 @@ export default function Wishlist() {
                             {wishlist.map((p) => (
                                 <li key={p.id} className="mb-2 row border-bottom-accent align-items-center">
                                     <Link
-                                        className="text-decoration-none text-accent col-8 text-truncate"
+                                        className="text-decoration-none text-white col-8 text-truncate"
                                         to={`/product/${p.id}`}
                                         onClick={() => setOpen(false)}
                                         title={p.title}

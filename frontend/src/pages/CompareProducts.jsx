@@ -49,7 +49,7 @@ export default function CompareProducts() {
         <div className="container my-5 text-light">
             <h1 className="text-accent">Comparazione Prodotti</h1>
             <div className="mb-4">
-                <Link to="/" className="text-decoration-none" >Torna alla lista prodotti</Link>
+                <Link to="/product-list" className="text-decoration-none" >Torna alla lista prodotti</Link>
             </div>
             <div className="row g-4">
                 {compareProducts.map(item => {

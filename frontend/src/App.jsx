@@ -5,6 +5,7 @@ import ProductList from "./pages/ProductList"
 import ProductDetail from "./pages/ProductDetails"
 import CompareProducts from "./pages/CompareProducts"
 import ScrollToTop from "./components/ScrollToTop"
+import Homepage from "./pages/Homepage"
 
 function App() {
 
@@ -15,7 +16,8 @@ function App() {
         <ScrollToTop />
         <Routes>
           <Route element={<DefaultLayout />}>
-            <Route path='/' element={<ProductList />} />
+            <Route path='/' element={<Homepage />} />
+            <Route path='/product-list' element={<ProductList />} />
             <Route path='/product/:id' element={<ProductDetail />} />
             <Route path='/compare' element={<CompareProducts />} />
           </Route>
