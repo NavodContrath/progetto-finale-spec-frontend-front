@@ -80,7 +80,7 @@ export default function ProductDetail() {
                             <button className="btn btn-success" onClick={() => addToCompare(product.id)}>
                                 <i className="bi bi-clipboard2-plus-fill"></i>
                             </button>
-                            <Link to="/" className="btn btn-accent">Torna alla lista prodotti</Link>
+                            <Link to="/product-list" className="btn btn-accent">Torna alla lista prodotti</Link>
                         </div>
                     </div>
                 </div>

@@ -87,6 +87,7 @@ export default function ProductList() {
 
     return (
         <div className="container my-5">
+            <h1 className="text-accent">Catalogo Prodotti</h1>
             <div className="row g-3 my-3 align-items-center">
                 <div className="col-12 d-flex flex-column flex-md-row justify-content-between mt-3 gap-2">
                     <button className="btn btn-outline-light" onClick={toggleSortOrder}>
@@ -152,7 +153,7 @@ export default function ProductList() {
                         onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                         disabled={currentPage === 1}
                     >
-                        ← Prev
+                        <i class="bi bi-arrow-left"></i>
                     </button>
                     <span>Pagina {currentPage} di {totalPages}</span>
                     <button
@@ -160,7 +161,7 @@ export default function ProductList() {
                         onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                         disabled={currentPage === totalPages}
                     >
-                        Next →
+                        <i class="bi bi-arrow-right"></i>
                     </button>
                 </div>
             )}
