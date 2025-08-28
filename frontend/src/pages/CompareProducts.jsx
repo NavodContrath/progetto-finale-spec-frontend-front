@@ -33,6 +33,7 @@ export default function CompareProducts() {
     if (!loading && compareProducts.length === 0) {
         return (
             <div className="container my-5">
+                <h1 className="text-accent mb-5">Comparatore di Prodotti</h1>
                 <div
                     className="d-flex flex-column justify-content-center align-items-center p-5 border rounded empty-box"
                     style={{ minHeight: "200px" }}
@@ -47,7 +48,7 @@ export default function CompareProducts() {
 
     return (
         <div className="container my-5 text-light">
-            <h1 className="text-accent">Comparazione Prodotti</h1>
+            <h1 className="text-accent">Comparatore di Prodotti</h1>
             <div className="mb-4">
                 <Link to="/product-list" className="text-decoration-none" >Torna alla lista prodotti</Link>
             </div>

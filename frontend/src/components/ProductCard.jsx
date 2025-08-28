@@ -13,7 +13,6 @@ function ProductCard({ p, onToggle, selected }) {
         Smartphone: "text-info",
         Game: "text-warning"
     }
-    console.log("compareProductIds:", compareProductIds, "p.id:", p.id)
 
     return (
         <div className="card h-100 shadow-sm product-card">

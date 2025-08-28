@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
-import Wishlist from "../components/Wishlist";
 import { useGlobal } from "../context/GlobalContext";
+import Wishlist from "../components/Wishlist";
 
 
 export default function DefaultLayout() {
@@ -16,7 +16,7 @@ export default function DefaultLayout() {
                     <div className="d-flex align-items-center gap-3">
                         <NavLink to="/product-list/?category=Laptop" className="text-white text-decoration-none h6">Laptop</NavLink>
                         <NavLink to="/product-list/?category=Smartphone" className="text-white text-decoration-none h6">Smartphone</NavLink>
-                        <NavLink to="/product-list/?category=Game" className="text-white text-decoration-none h6">Giochi</NavLink>
+                        <NavLink to="/product-list/?category=Game" className="text-white text-decoration-none h6">Games</NavLink>
                         <NavLink className="text-white text-decoration-none h6 position-relative" to="/compare">
                             {compareProductIds.length > 0 ? <i className="bi bi-clipboard2-fill"></i> : <i className="bi bi-clipboard2"></i>}
                             {compareProductIds.length > 0 && (

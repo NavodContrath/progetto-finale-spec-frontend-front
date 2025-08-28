@@ -28,7 +28,7 @@ export default function ProductDetail() {
 
     if (loading) return <InfoBanner error={"Sto Caricando"} info={"Prego attendere la fine del caricamento..."} />
 
-    if (!product) return <InfoBanner error={"404 notFound"} info={`Prodotto non trovato`} />
+    if (!product) return <InfoBanner error={"404 notFound"} info={`Prodotto con id ${id} non trovato`} />
     return (
         <>
             <div className="container   my-5 border rounded p-3"

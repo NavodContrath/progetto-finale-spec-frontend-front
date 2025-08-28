@@ -1,7 +1,7 @@
-import React, { useState } from "react"
-import ReactDOM from "react-dom"
+import { useState } from "react"
 import { useGlobal } from "../context/GlobalContext"
 import { Link } from "react-router-dom"
+import ReactDOM from "react-dom"
 
 export default function Wishlist() {
     const { wishlist, removeFromWishlist, addToCompare } = useGlobal()

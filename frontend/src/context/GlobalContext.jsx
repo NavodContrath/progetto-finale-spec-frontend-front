@@ -4,6 +4,7 @@ import useProducts from "../hooks/useProducts";
 const GlobalContext = createContext()
 
 function GlobalProvider({ children }) {
+
     const { products, getProductById } = useProducts()
     const [compareProductIds, setCompareProductIds] = useState(() => {
         const saved = localStorage.getItem("compareProducts")

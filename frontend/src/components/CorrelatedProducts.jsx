@@ -9,7 +9,7 @@ export default function CorrelatedProducts({ product, products }) {
         const sameCategory = products.filter(
             (p) => p.category === product.category && p.id !== product.id
         )
-        const randomized = [...sameCategory].sort(() => 0.5 - Math.random())
+        const randomized = [...sameCategory].sort(() => Math.random() - 0.5)
         return randomized.slice(0, 4)
     }, [product, products])
 

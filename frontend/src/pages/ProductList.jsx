@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import ProductCard from "../components/ProductCard";
 import { useGlobal } from "../context/GlobalContext";
 import { useLocation, useNavigate } from "react-router-dom";
+import ProductCard from "../components/ProductCard";
 import InfoBanner from "../components/InfoBanner";
 
 export default function ProductList() {
+
     const { products, addToCompare } = useGlobal()
     const navigate = useNavigate()
     const location = useLocation()
@@ -19,28 +20,7 @@ export default function ProductList() {
     const [currentPage, setCurrentPage] = useState(1)
     const productsPerPage = 8
 
-    useEffect(() => {
-        const categoryFromUrl = new URLSearchParams(location.search).get("category") || "Tutto"
-        setCategoryFilter(categoryFromUrl)
-    }, [location.search])
-
-    useEffect(() => {
-        setLoading(true)
-        const handler = setTimeout(() => {
-            setLoading(false)
-        }, 300)
-
-        return () => clearTimeout(handler)
-    }, [debouncedSearch, categoryFilter, products])
-
-    const categories = useMemo(() => {
-        const c = ["Tutto"]
-        products.forEach(p => {
-            if (!c.includes(p.category)) c.push(p.category)
-        });
-        return c
-    }, [products])
-
+    //filtering/sorting products
     const filteredProducts = useMemo(() => {
         let filtered = products.filter(p => {
             const filteredSearch = p.title.trim().toLowerCase().includes(debouncedSearch.trim().toLowerCase())
@@ -56,6 +36,14 @@ export default function ProductList() {
         return filtered
     }, [products, debouncedSearch, categoryFilter, sortOrder])
 
+    const toggleSortOrder = () => setSortOrder(prev => (prev === "A-z" ? "Z-a" : "A-z"))
+
+
+    //search and debouncer
+    const handleSearch = (e) => {
+        setSearch(e.target.value)
+    }
+
     useEffect(() => {
         const handler = setTimeout(() => {
             setDebouncedSearch(search)
@@ -64,12 +52,30 @@ export default function ProductList() {
         return () => clearTimeout(handler)
     }, [search])
 
-    const handleSearch = (e) => {
-        setSearch(e.target.value)
-    }
+    //categories from url
+    useEffect(() => {
+        const categoryFromUrl = new URLSearchParams(location.search).get("category") || "Tutto"
+        setCategoryFilter(categoryFromUrl)
+    }, [location.search])
 
-    const toggleSortOrder = () => setSortOrder(prev => (prev === "A-z" ? "Z-a" : "A-z"))
+    const categories = useMemo(() => {
+        const c = ["Tutto"]
+        products.forEach(p => {
+            if (!c.includes(p.category)) c.push(p.category)
+        });
+        return c
+    }, [products])
 
+    //loader
+    useEffect(() => {
+        setLoading(true)
+        const handler = setTimeout(() => {
+            setLoading(false)
+        }, 300)
+        return () => clearTimeout(handler)
+    }, [debouncedSearch, categoryFilter, products])
+
+    //multi selection and handler of compare
     const toggleSelection = useCallback((productId) => {
         setSelectedIds(prev => prev.includes(productId) ? prev.filter(id => id !== productId) : [...prev, productId]
         )
@@ -81,6 +87,7 @@ export default function ProductList() {
         navigate("/compare")
     }
 
+    //pagination logic
     const startIndex = (currentPage - 1) * productsPerPage
     const totalPages = Math.ceil(filteredProducts.length / productsPerPage)
     const paginatedProducts = filteredProducts.slice(startIndex, startIndex + productsPerPage)
