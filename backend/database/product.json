@@ -1,0 +1,414 @@
+[
+  {
+    "title": "iPhone 14",
+    "category": "Smartphone",
+    "brand": "Apple",
+    "price": 999,
+    "releaseYear": 2022,
+    "features": [
+      "5G",
+      "OLED display",
+      "Face ID"
+    ],
+    "specs": [
+      "6GB RAM",
+      "128GB Storage"
+    ],
+    "id": 1,
+    "createdAt": "2025-08-16T12:53:40.711Z",
+    "updatedAt": "2025-08-18T13:55:48.476Z",
+    "img": "GPT_Image_1_iphone_14_0.png"
+  },
+  {
+    "title": "Samsung Galaxy S23",
+    "category": "Smartphone",
+    "brand": "Samsung",
+    "price": 899,
+    "releaseYear": 2023,
+    "features": [
+      "5G",
+      "AMOLED display",
+      "Fingerprint Sensor"
+    ],
+    "specs": [
+      "8GB RAM",
+      "256GB Storage"
+    ],
+    "id": 2,
+    "createdAt": "2025-08-16T12:54:12.261Z",
+    "updatedAt": "2025-08-18T13:57:25.095Z",
+    "img": "GPT_Image_1_Samsung_Galaxy_S23_0.png"
+  },
+  {
+    "title": "Google Pixel 8",
+    "category": "Smartphone",
+    "brand": "Google",
+    "price": 799,
+    "releaseYear": 2023,
+    "features": [
+      "5G",
+      "OLED display",
+      "AI Camera"
+    ],
+    "specs": [
+      "8GB RAM",
+      "128GB Storage"
+    ],
+    "id": 3,
+    "createdAt": "2025-08-16T12:55:02.395Z",
+    "updatedAt": "2025-08-18T13:58:08.449Z",
+    "img": "GPT_Image_1_Google_Pixel_8_0.png"
+  },
+  {
+    "title": "Dell XPS 13",
+    "category": "Laptop",
+    "brand": "Dell",
+    "price": 1299,
+    "releaseYear": 2022,
+    "specs": [
+      "16GB RAM",
+      "512GB SSD",
+      "Intel i7"
+    ],
+    "id": 4,
+    "createdAt": "2025-08-16T12:55:13.972Z",
+    "updatedAt": "2025-08-18T13:58:37.882Z",
+    "img": "GPT_Image_1_Dell_XPS_13_laptop_0.png"
+  },
+  {
+    "title": "MacBook Pro 16",
+    "category": "Laptop",
+    "brand": "Apple",
+    "price": 2499,
+    "releaseYear": 2022,
+    "specs": [
+      "16GB RAM",
+      "1TB SSD",
+      "M1 Pro"
+    ],
+    "id": 5,
+    "createdAt": "2025-08-16T12:55:22.413Z",
+    "updatedAt": "2025-08-18T13:59:03.929Z",
+    "img": "GPT_Image_1_MacBook_Pro_16_0.png"
+  },
+  {
+    "title": "Asus ROG Zephyrus",
+    "category": "Laptop",
+    "brand": "Asus",
+    "price": 1799,
+    "releaseYear": 2023,
+    "specs": [
+      "16GB RAM",
+      "1TB SSD",
+      "RTX 3070"
+    ],
+    "id": 6,
+    "createdAt": "2025-08-16T12:55:30.955Z",
+    "updatedAt": "2025-08-18T13:59:34.017Z",
+    "img": "GPT_Image_1_Asus_ROG_Zephyrus_0.png"
+  },
+  {
+    "title": "Cyberpunk 2077",
+    "category": "Game",
+    "brand": "CD Projekt",
+    "price": 59,
+    "releaseYear": 2020,
+    "platform": "PC",
+    "features": [
+      "Open World",
+      "RPG"
+    ],
+    "id": 7,
+    "createdAt": "2025-08-16T12:56:06.830Z",
+    "updatedAt": "2025-08-21T09:48:52.611Z",
+    "img": "GPT_Image_1_Cyberpunk_2077_cover_of_the_game_0.png"
+  },
+  {
+    "title": "The Witcher 3",
+    "category": "Game",
+    "brand": "CD Projekt",
+    "price": 39,
+    "releaseYear": 2015,
+    "platform": "PC",
+    "features": [
+      "Open World",
+      "RPG"
+    ],
+    "id": 8,
+    "createdAt": "2025-08-16T12:56:30.277Z",
+    "updatedAt": "2025-08-21T09:49:54.660Z",
+    "img": "GPT_Image_1_The_Witcher_3_cover_of_the_game_0.png"
+  },
+  {
+    "title": "Call of Duty: Modern Warfare",
+    "category": "Game",
+    "brand": "Activision",
+    "price": 69,
+    "releaseYear": 2019,
+    "platform": "PC",
+    "features": [
+      "FPS",
+      "Multiplayer"
+    ],
+    "id": 9,
+    "createdAt": "2025-08-16T12:56:41.016Z",
+    "updatedAt": "2025-08-21T09:50:41.033Z",
+    "img": "GPT_Image_1_Call_of_Duty_Modern_Warfare_cover_of_the_game_0.png"
+  },
+  {
+    "title": "OnePlus 11",
+    "category": "Smartphone",
+    "brand": "OnePlus",
+    "price": 699,
+    "releaseYear": 2023,
+    "features": [
+      "5G",
+      "AMOLED display",
+      "Fast charging"
+    ],
+    "specs": [
+      "12GB RAM",
+      "256GB Storage"
+    ],
+    "id": 10,
+    "createdAt": "2025-08-16T12:56:50.059Z",
+    "updatedAt": "2025-08-18T14:00:05.118Z",
+    "img": "GPT_Image_1_OnePlus_11_0.png"
+  },
+  {
+    "title": "Xiaomi 13 Pro",
+    "category": "Smartphone",
+    "brand": "Xiaomi",
+    "price": 749,
+    "releaseYear": 2023,
+    "features": [
+      "5G",
+      "OLED display",
+      "AI Camera"
+    ],
+    "specs": [
+      "12GB RAM",
+      "256GB Storage"
+    ],
+    "id": 11,
+    "createdAt": "2025-08-16T12:56:56.404Z",
+    "updatedAt": "2025-08-18T14:00:30.139Z",
+    "img": "GPT_Image_1_Xiaomi_13_Pro_0.png"
+  },
+  {
+    "title": "Sony Xperia 1 IV",
+    "category": "Smartphone",
+    "brand": "Sony",
+    "price": 949,
+    "releaseYear": 2022,
+    "features": [
+      "5G",
+      "4K OLED",
+      "Cinema display"
+    ],
+    "specs": [
+      "12GB RAM",
+      "256GB Storage"
+    ],
+    "id": 12,
+    "createdAt": "2025-08-16T12:57:04.059Z",
+    "updatedAt": "2025-08-18T14:00:56.109Z",
+    "img": "GPT_Image_1_Sony_Xperia_1_IV_0.png"
+  },
+  {
+    "title": "HP Spectre x360",
+    "category": "Laptop",
+    "brand": "HP",
+    "price": 1599,
+    "releaseYear": 2022,
+    "specs": [
+      "16GB RAM",
+      "512GB SSD",
+      "Intel i7"
+    ],
+    "id": 13,
+    "createdAt": "2025-08-16T12:57:12.572Z",
+    "updatedAt": "2025-08-18T14:01:23.397Z",
+    "img": "GPT_Image_1_HP_Spectre_x360_0.png"
+  },
+  {
+    "title": "Lenovo ThinkPad X1 Carbon",
+    "category": "Laptop",
+    "brand": "Lenovo",
+    "price": 1799,
+    "releaseYear": 2023,
+    "specs": [
+      "16GB RAM",
+      "1TB SSD",
+      "Intel i7"
+    ],
+    "id": 14,
+    "createdAt": "2025-08-16T12:57:23.997Z",
+    "updatedAt": "2025-08-18T14:01:57.692Z",
+    "img": "GPT_Image_1_Lenovo_ThinkPad_X1_Carbon_0.png"
+  },
+  {
+    "title": "Acer Predator Helios 300",
+    "category": "Laptop",
+    "brand": "Acer",
+    "price": 1499,
+    "releaseYear": 2023,
+    "specs": [
+      "16GB RAM",
+      "512GB SSD",
+      "RTX 3060"
+    ],
+    "id": 15,
+    "createdAt": "2025-08-16T12:57:32.652Z",
+    "updatedAt": "2025-08-21T09:51:21.185Z",
+    "img": "GPT_Image_1_Acer_Predator_Helios_300_0.png"
+  },
+  {
+    "title": "Minecraft",
+    "category": "Game",
+    "brand": "Mojang",
+    "price": 29,
+    "releaseYear": 2011,
+    "platform": "PC",
+    "features": [
+      "Sandbox",
+      "Creativity"
+    ],
+    "id": 16,
+    "createdAt": "2025-08-16T12:57:37.883Z",
+    "updatedAt": "2025-08-21T09:51:56.333Z",
+    "img": "GPT_Image_1_Minecraft_cover_of_the_game_0.png"
+  },
+  {
+    "title": "Fortnite",
+    "category": "Game",
+    "brand": "Epic Games",
+    "price": 0,
+    "releaseYear": 2017,
+    "platform": "PC",
+    "features": [
+      "Battle Royale",
+      "Multiplayer"
+    ],
+    "id": 17,
+    "createdAt": "2025-08-16T12:57:45.512Z",
+    "updatedAt": "2025-08-25T11:36:46.464Z",
+    "img": "fortnite.png"
+  },
+  {
+    "title": "FIFA 24",
+    "category": "Game",
+    "brand": "EA Sports",
+    "price": 69,
+    "releaseYear": 2023,
+    "platform": "PS5",
+    "features": [
+      "Sports",
+      "Multiplayer"
+    ],
+    "id": 18,
+    "createdAt": "2025-08-16T12:57:51.835Z",
+    "updatedAt": "2025-08-22T10:55:53.771Z",
+    "img": "GPT_Image_1_FIFA24_cover_of_the_game_0.png"
+  },
+  {
+    "title": "Horizon Forbidden West",
+    "category": "Game",
+    "brand": "Guerrilla Games",
+    "price": 79,
+    "releaseYear": 2022,
+    "platform": "PS5",
+    "features": [
+      "Action",
+      "Open World"
+    ],
+    "id": 19,
+    "createdAt": "2025-08-16T12:57:59.531Z",
+    "updatedAt": "2025-08-22T10:56:18.778Z",
+    "img": "GPT_Image_1_Horizon_forbidden_west_cover_of_the_game_0.png"
+  },
+  {
+    "title": "Red Dead Redemption 2",
+    "category": "Game",
+    "brand": "Rockstar Games",
+    "price": 59,
+    "releaseYear": 2018,
+    "platform": "PC",
+    "features": [
+      "Open World",
+      "Adventure"
+    ],
+    "id": 20,
+    "createdAt": "2025-08-16T12:58:06.283Z",
+    "updatedAt": "2025-08-22T10:56:51.303Z",
+    "img": "GPT_Image_1_Red_dead_redemption_2west_cover_of_the_game_0.png"
+  },
+  {
+    "title": "Google Pixel 7a",
+    "category": "Smartphone",
+    "brand": "Google",
+    "price": 499,
+    "releaseYear": 2023,
+    "features": [
+      "5G",
+      "OLED display",
+      "AI Camera"
+    ],
+    "specs": [
+      "8GB RAM",
+      "128GB Storage"
+    ],
+    "id": 21,
+    "createdAt": "2025-08-16T12:58:14.242Z",
+    "updatedAt": "2025-08-18T14:02:34.437Z",
+    "img": "GPT_Image_1_Google_Pixel_7a_0.png"
+  },
+  {
+    "title": "MacBook Air M2",
+    "category": "Laptop",
+    "brand": "Apple",
+    "price": 1199,
+    "releaseYear": 2022,
+    "specs": [
+      "8GB RAM",
+      "256GB SSD",
+      "M2"
+    ],
+    "id": 22,
+    "createdAt": "2025-08-16T12:58:22.292Z",
+    "updatedAt": "2025-08-21T09:52:32.561Z",
+    "img": "GPT_Image_1_MacBook_Air_M2_0.png"
+  },
+  {
+    "title": "Nintendo Switch OLED",
+    "category": "Game",
+    "brand": "Nintendo",
+    "price": 349,
+    "releaseYear": 2021,
+    "platform": "Switch",
+    "features": [
+      "Portable",
+      "Multiplayer"
+    ],
+    "id": 23,
+    "createdAt": "2025-08-16T12:58:34.614Z",
+    "updatedAt": "2025-08-22T10:57:21.121Z",
+    "img": "GPT_Image_1_Nintendo_switch_oled_0.png"
+  },
+  {
+    "title": "God of War Ragnarok",
+    "category": "Game",
+    "brand": "Santa Monica Studio",
+    "price": 79,
+    "releaseYear": 2022,
+    "platform": "PS5",
+    "features": [
+      "Action",
+      "Adventure"
+    ],
+    "id": 24,
+    "createdAt": "2025-08-16T13:01:00.709Z",
+    "updatedAt": "2025-08-22T11:01:40.329Z",
+    "img": "GOWR.jpg"
+  }
+]
