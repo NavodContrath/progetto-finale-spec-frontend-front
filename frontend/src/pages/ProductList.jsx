@@ -4,13 +4,15 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import InfoBanner from "../components/InfoBanner";
 
+
+
 export default function ProductList() {
 
     const { products, addToCompare } = useGlobal()
     const navigate = useNavigate()
     const location = useLocation()
     const [search, setSearch] = useState("")
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [debouncedSearch, setDebouncedSearch] = useState(search)
     const queryParams = new URLSearchParams(location.search)
     const intialCategory = queryParams.get("category") || "Tutto"
@@ -19,6 +21,16 @@ export default function ProductList() {
     const [selectedIds, setSelectedIds] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const productsPerPage = 8
+
+    function debounce(callback, delay) {
+        let timer
+        return (value) => {
+            clearTimeout(timer)
+            timer = setTimeout(() => {
+                callback(value)
+            }, delay)
+        };
+    }
 
     //filtering/sorting products
     const filteredProducts = useMemo(() => {
@@ -38,25 +50,32 @@ export default function ProductList() {
 
     const toggleSortOrder = () => setSortOrder(prev => (prev === "A-z" ? "Z-a" : "A-z"))
 
-
     //search and debouncer
     const handleSearch = (e) => {
         setSearch(e.target.value)
+        setLoading(true)
+        debounceSearch(e.target.value)
     }
 
-    useEffect(() => {
-        const handler = setTimeout(() => {
-            setDebouncedSearch(search)
-        }, 300)
-
-        return () => clearTimeout(handler)
-    }, [search])
+    const debounceSearch = useCallback(debounce((value) => {
+        setDebouncedSearch(value)
+        setLoading(false)
+    }, 500), []
+    )
 
     //categories from url
     useEffect(() => {
         const categoryFromUrl = new URLSearchParams(location.search).get("category") || "Tutto"
         setCategoryFilter(categoryFromUrl)
     }, [location.search])
+
+    useEffect(() => {
+        if (categoryFilter === "Tutto") {
+            navigate("/product-list");
+        } else {
+            navigate(`/product-list?category=${categoryFilter}`);
+        }
+    }, [categoryFilter, navigate])
 
     const categories = useMemo(() => {
         const c = ["Tutto"]
@@ -66,14 +85,11 @@ export default function ProductList() {
         return c
     }, [products])
 
-    //loader
-    useEffect(() => {
+    const handleCategoryChange = (e) => {
+        setCategoryFilter(e.target.value)
         setLoading(true)
-        const handler = setTimeout(() => {
-            setLoading(false)
-        }, 300)
-        return () => clearTimeout(handler)
-    }, [debouncedSearch, categoryFilter, products])
+        setTimeout(() => setLoading(false), 500)
+    }
 
     //multi selection and handler of compare
     const toggleSelection = useCallback((productId) => {
@@ -91,6 +107,10 @@ export default function ProductList() {
     const startIndex = (currentPage - 1) * productsPerPage
     const totalPages = Math.ceil(filteredProducts.length / productsPerPage)
     const paginatedProducts = filteredProducts.slice(startIndex, startIndex + productsPerPage)
+
+    useEffect(() => {
+        setCurrentPage(1)
+    }, [debouncedSearch, categoryFilter])
 
     return (
         <div className="container my-5">
@@ -119,7 +139,7 @@ export default function ProductList() {
                     <select
                         className="form-select category-select"
                         value={categoryFilter}
-                        onChange={(e) => setCategoryFilter(e.target.value)}
+                        onChange={handleCategoryChange}
                     >
                         {categories.map(c => (
                             <option key={c} value={c}>{c}</option>
@@ -160,7 +180,7 @@ export default function ProductList() {
                         onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                         disabled={currentPage === 1}
                     >
-                        <i class="bi bi-arrow-left"></i>
+                        <i className="bi bi-arrow-left"></i>
                     </button>
                     <span>Pagina {currentPage} di {totalPages}</span>
                     <button
@@ -168,7 +188,7 @@ export default function ProductList() {
                         onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                         disabled={currentPage === totalPages}
                     >
-                        <i class="bi bi-arrow-right"></i>
+                        <i className="bi bi-arrow-right"></i>
                     </button>
                 </div>
             )}

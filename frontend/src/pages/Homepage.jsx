@@ -22,7 +22,8 @@ export default function Homepage() {
             setLoading(true)
             try {
                 const result = {}
-                for (let category of categories) {
+                for (let i = 0; i < categories.length; i++) {
+                    const category = categories[i]
                     const randomProduct = getRandomProductByCategory(products, category)
                     if (randomProduct) {
                         const data = await getProductById(randomProduct.id)
@@ -41,6 +42,7 @@ export default function Homepage() {
         fetchRandomProducts()
     }, [products])
 
+
     if (loading) return <InfoBanner error={"Sto Caricando"} info={"Prego attendere la fine del caricamento..."} />
 
 
@@ -49,10 +51,13 @@ export default function Homepage() {
             <div className="container">
                 <div className=" mb-4 bg-dark rounded-3 mt-5">
                     <div className="container py-3 d-flex flex-column align-items-center">
-                        <div className="text-center">
+                        <div >
                             <h1 className="display-4 fw-bold text-accent">COMPARA</h1>
                             <h2 className="display-5 fw-bold text-white">i tuoi prodotti preferiti in un click!</h2>
-                            <h3 className="display-6 fw-bold text-white">al momento abbiamo <strong className="text-primary">{products.length}</strong> prodotti in catalogo.</h3>
+                            <h3 className="display-6 fw-bold text-white">
+                                al momento abbiamo <strong className="text-accent">{products.length}</strong><Link to="/product-list" > prodotti </Link>in catalogo.
+                            </h3>
+
                         </div>
                     </div>
                 </div>
@@ -61,10 +66,7 @@ export default function Homepage() {
                     <CategoriesSection productsByCategory={product} categories={categories} />
 
                 </div>
-                <div className="mt-4">
-                    <h3>Oppure visualizza tutti i nostri<Link to="/product-list" className="text-decoration-none" > prodotti</Link></h3>
 
-                </div>
 
             </div>
         </>

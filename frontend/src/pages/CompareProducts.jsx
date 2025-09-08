@@ -39,7 +39,7 @@ export default function CompareProducts() {
                     style={{ minHeight: "200px" }}
                 >
                     <h4>Nessun prodotto selezionato per la comparazione</h4>
-                    <Link to="/" className="btn btn-accent mt-3">Torna alla lista prodotti</Link>
+                    <Link to="/product-list" className="btn btn-accent mt-3">Torna alla lista prodotti</Link>
                 </div>
             </div>
         );
@@ -69,7 +69,9 @@ export default function CompareProducts() {
                                 />
 
                                 <div className="mb-3">
-                                    <h2 className="text-accent">{product.title}</h2>
+                                    <Link className=" text-accent fw-bold fs-4 text-decoration-none" to={`/product/${product.id}`}>
+                                        {product.title}
+                                    </Link>
                                     <p><strong>Categoria:</strong> {product.category}</p>
                                     <p><strong>Brand:</strong> {product.brand}</p>
                                     {product.price === 0 ? <p><strong>Prezzo:</strong> gratuito</p> : <p><strong>Prezzo:</strong> €{product.price}</p>}

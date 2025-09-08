@@ -38,8 +38,6 @@ export default function DefaultLayout() {
                     </span>
                 </div>
             </footer>
-
-
         </>
     )
 }
