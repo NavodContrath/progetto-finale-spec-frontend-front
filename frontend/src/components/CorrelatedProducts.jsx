@@ -1,9 +1,8 @@
-import { useMemo, useState, useEffect } from "react"
+import { useMemo } from "react"
 import ProductCard from "./ProductCard"
 import InfoBanner from "./InfoBanner"
 
 export default function CorrelatedProducts({ product, products }) {
-    const [loading, setLoading] = useState(true)
     const correlatedProducts = useMemo(() => {
         if (!product) return []
         const sameCategory = products.filter(
@@ -13,13 +12,9 @@ export default function CorrelatedProducts({ product, products }) {
         return randomized.slice(0, 4)
     }, [product, products])
 
-    useEffect(() => {
-        setLoading(true)
-        const timer = setTimeout(() => setLoading(false), 200)
-        return () => clearTimeout(timer)
-    }, [product, products])
 
-    if (loading) return <InfoBanner error={"Sto Caricando"} info={"Prego attendere la fine del caricamento..."} />
+
+    if (!product || products.length === 0) return <InfoBanner error={"Sto Caricando"} info={"Prego attendere la fine del caricamento..."} />
     return (
         <>
             {correlatedProducts.length > 0 && (

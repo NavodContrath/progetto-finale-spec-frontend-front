@@ -8,7 +8,7 @@ import InfoBanner from "../components/InfoBanner";
 
 export default function ProductList() {
 
-    const { products, addToCompare } = useGlobal()
+    const { products, addToCompare, compareProductIds, clearCompare } = useGlobal()
     const navigate = useNavigate()
     const location = useLocation()
     const [search, setSearch] = useState("")
@@ -123,6 +123,11 @@ export default function ProductList() {
                     {selectedIds.length > 0 && (
                         <button className="btn btn-accent" onClick={addHandler}>
                             Aggiungi selezionati alla comparazione
+                        </button>
+                    )}
+                    {compareProductIds.length > 0 && (
+                        <button className="btn btn-accent" onClick={clearCompare}>
+                            Svuota comparazione
                         </button>
                     )}
                 </div>
