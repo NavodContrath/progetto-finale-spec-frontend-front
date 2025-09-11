@@ -10,6 +10,7 @@ export default function ProductDetail() {
     const [product, setProduct] = useState(null)
     const [loading, setLoading] = useState(true)
 
+    //fetch singolo prodotto per dettagli
     useEffect(() => {
         async function fetchProduct() {
             setLoading(true)

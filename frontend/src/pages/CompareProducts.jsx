@@ -8,6 +8,7 @@ export default function CompareProducts() {
     const [compareProducts, setCompareProducts] = useState([])
     const [loading, setLoading] = useState(true)
 
+    //fetch parallelo di utti i prodotti da comparare
     useEffect(() => {
         async function fetchToCompare() {
             setLoading(true)

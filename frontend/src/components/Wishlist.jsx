@@ -5,11 +5,12 @@ import ReactDOM from "react-dom"
 
 export default function Wishlist() {
     const { wishlist, removeFromWishlist, addToCompare } = useGlobal()
+    //creo collegamento con elemento del dom
     const wishlistRoot = document.getElementById("wishlist-root")
     const [open, setOpen] = useState(false)
 
     if (!wishlistRoot) return null
-
+    //creo portale per il componente definito sotto
     return ReactDOM.createPortal(
         <div className="wishlist-dropdown position-relative">
             <div onClick={() => setOpen(!open)} style={{ cursor: "pointer" }}>
@@ -58,6 +59,7 @@ export default function Wishlist() {
             )}
         </div>
         ,
+        //elemento dom dove voglio renderizzarlo
         wishlistRoot
     )
 }

@@ -4,6 +4,10 @@ import InfoBanner from "../components/InfoBanner"
 import { Link } from "react-router-dom"
 import CategoriesSection from "../components/CategoriesSection"
 
+/*
+Array filtrato per categoria,
+Crea un indice randomico 
+Ritorna elemento con indice randomico dall'array*/
 function getRandomProductByCategory(products, category) {
     const filtered = products.filter(p => p.category === category)
     if (!filtered.length) return null
@@ -17,6 +21,7 @@ export default function Homepage() {
     const [loading, setLoading] = useState(false)
     const categories = ["Laptop", "Smartphone", "Game"]
 
+    //fetch del prodotto randomico per ogni categoria
     useEffect(() => {
         async function fetchRandomProducts() {
             setLoading(true)

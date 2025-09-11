@@ -4,6 +4,7 @@ import { useGlobal } from "../context/GlobalContext"
 
 function ProductCard({ p, onToggle, selected }) {
     const { wishlist, toggleWishlist, compareProductIds, addToCompare } = useGlobal()
+    //stati e metodi di array con risultati booleani per cinamicità della UI
     const isListed = wishlist.some(item => item.id === p.id)
     const isCompared = compareProductIds?.includes(p.id)
     const [isOverWish, setIsOverWish] = useState(false)
@@ -80,4 +81,5 @@ function ProductCard({ p, onToggle, selected }) {
 
     )
 }
+//memorizzato il componente non verrà rerenderizzato senon la cambio delle proprie props
 export default React.memo(ProductCard)

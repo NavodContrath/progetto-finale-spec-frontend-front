@@ -6,7 +6,7 @@ const GlobalContext = createContext()
 function GlobalProvider({ children }) {
 
     const { products, getProductById } = useProducts()
-
+    //Prendo dati salvati in localStorage con la loro key
     const [compareProductIds, setCompareProductIds] = useState(() => {
         const saved = localStorage.getItem("compareProducts")
         return saved ? JSON.parse(saved).map(Number) : []
@@ -17,7 +17,7 @@ function GlobalProvider({ children }) {
     })
 
     //COMPARAZIONE//
-
+    //setto localStorage ogni volta che l'array varia
     useEffect(() => {
         localStorage.setItem("compareProducts", JSON.stringify(compareProductIds))
     }, [compareProductIds])
@@ -47,7 +47,7 @@ function GlobalProvider({ children }) {
     }
 
     //WISHLIST//
-
+    //setto localStorage ogni volta che l'array varia
     useEffect(() => {
         localStorage.setItem("wishlist", JSON.stringify(wishlist));
     }, [wishlist])

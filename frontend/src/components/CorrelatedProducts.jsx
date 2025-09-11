@@ -3,6 +3,7 @@ import ProductCard from "./ProductCard"
 import InfoBanner from "./InfoBanner"
 
 export default function CorrelatedProducts({ product, products }) {
+    //calcolo con useMemo per prodotti similari per categoria
     const correlatedProducts = useMemo(() => {
         if (!product) return []
         const sameCategory = products.filter(
